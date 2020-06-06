@@ -22,7 +22,7 @@ func TestListMovie(t *testing.T) {
 	}
 
 	result := rr.Body.String()
-	expected := `"message":"20 movie(s) have been discovered.","success":true`
+	expected := `"message":"20 movie(s) have been discovered.","success":truess`
 	if !strings.Contains(result, expected) {
 		t.Errorf("Handler returned unexpected body: got %v want string containing %v", result, expected)
 	}
