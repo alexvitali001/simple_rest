@@ -19,12 +19,18 @@ pipeline {
             steps {
                 echo 'Running pre test steps'
                 sh 'go version'
+                sh 'go get -u github.com/golang/lint/golint'
             }
         }
         
         stage('Test') {
             steps {
                 echo 'Running test steps'
+                echo 'Running vetting...'
+                sh 'go vet .'
+                echo 'Running linting...'
+                sh 'golint .'
+                echo 'Running test...'
                 sh 'cd test && go test -v'
             }
         }
