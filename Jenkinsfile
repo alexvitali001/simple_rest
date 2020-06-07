@@ -11,7 +11,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 echo 'Running checkout steps'
-                git branch: 'master', credentialsId: 'github_token', url: 'https://github.com/wilsontwm/go_simple_rest'
+                git branch: 'master', credentialsId: '979d477d-fb5f-432b-a75b-f9916559e105', url: 'https://github.com/wilsontwm/go_simple_rest'
             }
         }
         
