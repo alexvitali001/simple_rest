@@ -8,14 +8,7 @@ pipeline {
         CGO_ENABLED = 0 
         GOPATH = "${JENKINS_HOME}/jobs/${JOB_NAME}/builds/${BUILD_ID}"
     }
-    stages {
-        stage('Checkout') {
-            steps {
-                echo 'Running checkout steps'
-                git branch: 'master', credentialsId: '979d477d-fb5f-432b-a75b-f9916559e105', url: 'https://github.com/wilsontwm/go_simple_rest'
-            }
-        }
-        
+    stages {        
         stage('Pre Test') {
             steps {
                 echo 'Installing dependencies'
@@ -30,7 +23,7 @@ pipeline {
                 sh 'go build'
             }
         }
-        
+
         stage('Test') {
             steps {
                 withEnv(["PATH+GO=${GOPATH}/bin"]){
