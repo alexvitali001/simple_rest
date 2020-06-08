@@ -24,6 +24,13 @@ pipeline {
             }
         }
         
+        stage('Build') {
+            steps {
+                echo 'Compiling and building'
+                sh 'go build'
+            }
+        }
+        
         stage('Test') {
             steps {
                 withEnv(["PATH+GO=${GOPATH}/bin"]){
@@ -37,12 +44,6 @@ pipeline {
             }
         }
         
-        stage('Build') {
-            steps {
-                echo 'Compiling and building'
-                sh 'go build'
-            }
-        }
     }
     post {
         always {
