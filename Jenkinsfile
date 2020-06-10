@@ -18,6 +18,9 @@ pipeline {
         }
         
         stage('Build') {
+            when {
+                anyOf { branch 'master'; branch 'staging' }  
+            }
             steps {
                 echo 'Compiling and building'
                 sh 'go build'
@@ -34,6 +37,15 @@ pipeline {
                     echo 'Running test'
                     sh 'cd test && go test -v'
                 }
+            }
+        }
+
+        stage('Deploy') {
+            when {
+                branch 'master'
+            }
+            steps {
+                echo 'Deploy the app'
             }
         }
         
