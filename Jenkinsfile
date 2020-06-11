@@ -14,12 +14,13 @@ pipeline {
                 echo 'Installing dependencies'
                 sh 'go version'
                 sh 'go get -u golang.org/x/lint/golint'
+                echo 'Pulling... ' + env.GIT_BRANCH
             }
         }
         
         stage('Build') {
             when {
-                anyOf { branch '*/master'; branch '*/staging' }  
+                anyOf { branch 'origin/master'; branch 'origin/staging' }  
             }
             steps {
                 echo 'Compiling and building'
@@ -42,7 +43,7 @@ pipeline {
 
         stage('Deploy') {
             when {
-                branch '*/master'
+                branch 'origin/master'
             }
             steps {
                 echo 'Deploy the app'
