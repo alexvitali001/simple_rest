@@ -19,7 +19,7 @@ pipeline {
         
         stage('Build') {
             when {
-                anyOf { branch 'master'; branch 'staging' }  
+                anyOf { branch 'origin/master'; branch 'origin/staging' }  
             }
             steps {
                 echo 'Compiling and building'
@@ -42,7 +42,7 @@ pipeline {
 
         stage('Deploy') {
             when {
-                branch 'master'
+                branch 'origin/master'
             }
             steps {
                 echo 'Deploy the app'
