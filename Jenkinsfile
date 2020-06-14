@@ -17,7 +17,6 @@ pipeline {
                 echo 'Installing dependencies'
                 sh 'go version'
                 sh 'go get -u golang.org/x/lint/golint'
-                echo 'Pulling... ' + env.GIT_BRANCH
             }
         }
         
