@@ -18,7 +18,7 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
+  # The "build" workflow
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
@@ -28,12 +28,15 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
     
-    # Install all the dependicies
-    - name: Install dependencies
+    # Setup Go
+    - name: Setup Go
       uses: actions/setup-go@v2
       with:
         go-version: '1.14.0' # The Go version to download (if necessary) and use.
-    - run: |
+    
+    # Install all the dependicies
+    - name: Install dependencies
+      run: |
         go version
         go get -u golang.org/x/lint/golint
         
@@ -60,4 +63,15 @@ jobs:
       env:
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }} # required
       if: always() # Pick up events even if the job fails or is canceled.
-    
+
+  # The "deploy" workflow
+  deploy:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    needs: [build] # Only run this workflow when "build" workflow succeeds
+    if: ${{ github.ref == 'refs/heads/master' && github.event_name == 'push' }} # Only run this workflow if it is master branch on push event
+    steps:
+    # Testing
+    - name: Testing
+      run: echo Hello
+
