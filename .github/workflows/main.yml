@@ -71,7 +71,12 @@ jobs:
     needs: [build] # Only run this workflow when "build" workflow succeeds
     if: ${{ github.ref == 'refs/heads/master' && github.event_name == 'push' }} # Only run this workflow if it is master branch on push event
     steps:
-    # Testing
-    - name: Testing
-      run: echo Hello
+    # Deploy to Docker registry
+    - name: Deploy to Docker registry
+      uses: docker/build-push-action@v1
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+        repository: wilsontanwm/gosimple
+        tags: v1
 
