@@ -80,5 +80,5 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
         repository: wilsontanwm/gosimple
-        tags: v1
+        tag_with_ref: true
 
