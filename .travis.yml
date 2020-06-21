@@ -9,13 +9,12 @@ branches:
     - staging
     - develop
 
-install:
-  - go version
-  - go get -u golang.org/x/lint/golint
-
 jobs:
   include:
-    - stage: CI
+    - stage: CI    
+      install:
+        - go version
+        - go get -u golang.org/x/lint/golint
       script:
         - echo "Hello World"
         - go build .
