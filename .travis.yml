@@ -15,14 +15,14 @@ jobs:
       install:
         - go version
         - go get -u golang.org/x/lint/golint
-      script:
+    - script:
         - echo "Hello World"
         - go build .
-      script:
+    - script:
         - go vet .
-      script:
+    - script:
         - golint .
-      script:
+    - script:
         - cd test && go test -v
 
     - stage: Deploy
