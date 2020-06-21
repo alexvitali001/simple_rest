@@ -5,6 +5,7 @@ go:
 
 branches:
   only:
+    - staging
     - develop
 
 jobs:
