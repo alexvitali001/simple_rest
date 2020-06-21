@@ -18,8 +18,11 @@ jobs:
       script:
         - echo "Hello World"
         - go build .
+      script:
         - go vet .
+      script:
         - golint .
+      script:
         - cd test && go test -v
 
     - stage: Deploy
