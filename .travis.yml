@@ -5,8 +5,12 @@ go:
 
 branches:
   only:
+    - master
     - staging
     - develop
+
+install:
+  - go get -u golang.org/x/lint/golint
 
 jobs:
   include:
@@ -14,4 +18,10 @@ jobs:
       script:
         - echo "Hello World"
         - go build .
+        - go vet .
+        - golint .
         - cd test && go test -v
+
+    - stage: Deploy
+      script:
+        - echo "Deploy"
