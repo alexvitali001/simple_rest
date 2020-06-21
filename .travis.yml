@@ -10,6 +10,7 @@ branches:
     - develop
 
 install:
+  - go version
   - go get -u golang.org/x/lint/golint
 
 jobs:
