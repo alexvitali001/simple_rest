@@ -11,19 +11,28 @@ branches:
 
 jobs:
   include:
-    - stage: CI    
+    - stage: CI
+      name: "Package & build"    
       script:
         - echo "Hello World"
         - go build .
-    - script:
+    - name: "Run vet"
+      script:
         - go vet .
-    - install:
+    - name: "Run Linting"
+      install:
         - go get -u golang.org/x/lint/golint
       script:
         - golint .
-    - script:
+    - name: "Unit Tests"
+      script:
         - cd test && go test -v
 
     - stage: Deploy
+      if: branch = master
+      name: "Dummy deploy stage"
       script:
         - echo "Deploy"
+
+notifications:
+  slack: ${{ secrets.SLACK_TRAVIS_CHANNEL }}:${{ secrets.SLACK_TRAVIS_TOKEN }}
