@@ -10,7 +10,6 @@ import (
 	"os"
 )
 
-// Route : The routes for the API
 type Route struct {
 	Router *mux.Router
 	Path   string
