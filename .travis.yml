@@ -12,15 +12,14 @@ branches:
 jobs:
   include:
     - stage: CI    
-      install:
-        - go version
-        - go get -u golang.org/x/lint/golint
-    - script:
+      script:
         - echo "Hello World"
         - go build .
     - script:
         - go vet .
-    - script:
+    - install:
+        - go get -u golang.org/x/lint/golint
+      script:
         - golint .
     - script:
         - cd test && go test -v
