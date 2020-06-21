@@ -1,0 +1,16 @@
+language: go
+
+go:
+  - "1.14"
+
+branches:
+  only:
+    - develop
+
+jobs:
+  include:
+    - stage: CI
+      script:
+        - echo "Hello World"
+        - go build .
+        - cd test && go test -v
