@@ -35,4 +35,4 @@ jobs:
         - echo "Deploy"
 
 notifications:
-  slack: ${{ secrets.SLACK_TRAVIS_CHANNEL }}:${{ secrets.SLACK_TRAVIS_TOKEN }}
+  slack: wilsontestdevops:THWnlM99a0z6gOYb0DVxuhnQ
