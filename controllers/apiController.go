@@ -8,7 +8,21 @@ import (
 	"strconv"
 )
 
-// GET: Get list of movies from TMDB via discovery
+// Version :  Get the version of the API
+var Version = func(w http.ResponseWriter, r *http.Request) {
+	resp := make(map[string]interface{})
+
+	type Result struct {
+		Version string `json:"version"`
+	}
+	result := Result{
+		Version: os.Getenv("VERSION"),
+	}
+
+	utils.Success(w, http.StatusOK, resp, result, "Successfully get the version of API")
+}
+
+// MovieList : Get list of movies from TMDB via discovery
 var MovieList = func(w http.ResponseWriter, r *http.Request) {
 	resp := make(map[string]interface{})
 

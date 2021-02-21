@@ -1,0 +1,40 @@
+settings:
+  files:
+    outputs:
+      status: false
+      path: ""
+      name: .r.outputs.log
+    logs:
+      status: false
+      path: ""
+      name: .r.logs.log
+    errors:
+      status: false
+      path: ""
+      name: .r.errors.log
+  legacy:
+    force: true
+    interval: 0ms
+schema:
+  - name: Go Simple Rest
+    path: .
+    env:
+      VERSION: "1.0.1"
+      PORT: 3000
+      TMDB_API_URL: "https://api.themoviedb.org/3/"
+      TMDB_KEY: "cf11ce9dee99cb6fe4e000c1a005e99c"
+    commands:
+      install:
+        status: true
+        method: go install
+      run:
+        status: true
+    watcher:
+      extensions:
+        - go
+      paths:
+        - /
+      ignored_paths:
+        - .git
+        - .realize
+        - vendor

@@ -1,13 +1,14 @@
 package main
 
 import (
-	"github.com/gorilla/handlers"
-	"github.com/gorilla/mux"
-	"github.com/joho/godotenv"
 	"go_simple_rest/controllers"
 	"log"
 	"net/http"
 	"os"
+
+	"github.com/gorilla/handlers"
+	"github.com/gorilla/mux"
+	"github.com/joho/godotenv"
 )
 
 // Route : The routes for the API
@@ -46,6 +47,7 @@ func main() {
 // Setup REST routes
 func setupRoutes(router *mux.Router) {
 	v1Routes := router.PathPrefix("/v1").Subrouter()
+	routes = append(routes, Route{Router: v1Routes, Path: "/version", Func: controllers.Version, Method: "GET"})
 	routes = append(routes, Route{Router: v1Routes, Path: "/movie/list", Func: controllers.MovieList, Method: "GET"})
 
 	for _, r := range routes {
